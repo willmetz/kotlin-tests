@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MyFirstKotlinProject</string>
+    <string name="title_activity_related_pages">Related Pages</string>
+    <string name="home">home</string>
+    <string name="headlines">headlines</string>
+    <string name="related_page_image">Related page image</string>
+</resources>

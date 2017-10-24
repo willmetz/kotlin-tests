@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="com.slapshotapps.myfirstkotlinproject.viewmodels.RelatedPagesItem"/>
+    </data>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:padding="4dp">
+
+        <ImageView
+            android:id="@+id/thumbnail"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/related_page_image"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:imageURL="@{item.getThumbnailUrl}"
+            tools:src="@drawable/test_image"
+            />
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{item.title}"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            app:layout_constraintStart_toEndOf="@id/thumbnail"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Hockey"/>
+
+        <TextView
+            android:id="@+id/decription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_marginTop="4dp"
+            android:text="@{item.description}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/title"
+            app:layout_constraintTop_toBottomOf="@id/title"
+            tools:text="team sport played on ice using sticks and skates"/>
+
+    </android.support.constraint.ConstraintLayout>
+
+</layout>
