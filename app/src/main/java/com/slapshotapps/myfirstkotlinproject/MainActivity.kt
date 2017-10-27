@@ -1,6 +1,5 @@
 package com.slapshotapps.myfirstkotlinproject
 
-import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
@@ -24,6 +23,10 @@ class MainActivity : AppCompatActivity(), MainViewModel.MainViewModelInterface {
             viewModel.onGetSearchCount(binding.termInputField.text.toString())
         })
 
+        binding.halloweenPhraseButton.setOnClickListener({
+            viewModel.onGetHalloweenPhrase()
+        })
+
         viewModel.setListener(this)
 
         val menu = binding.bottomNavMenu.menu
@@ -33,6 +36,8 @@ class MainActivity : AppCompatActivity(), MainViewModel.MainViewModelInterface {
 
         binding.bottomNavMenu.setOnNavigationItemSelectedListener(
             object : BottomNavigationView.OnNavigationItemSelectedListener {
+
+                //using the when clause here, which is essentially the switch statement
                 override fun onNavigationItemSelected(item: MenuItem) = when (item.itemId){
                     R.id.action_headlines -> navigateToHeadlines()
                     else -> false
@@ -46,6 +51,14 @@ class MainActivity : AppCompatActivity(), MainViewModel.MainViewModelInterface {
         viewModel.onDisconnect()
     }
 
+    override fun showHalloweenMsg(msg: String) {
+        AlertDialog.Builder(this)
+                .setTitle("Halloween Message")
+                .setMessage(msg)
+                .setCancelable(true)
+                .show()
+    }
+
     override fun showMessage(msg: String?) {
         binding.messageText.setText(msg);
     }
@@ -54,6 +67,7 @@ class MainActivity : AppCompatActivity(), MainViewModel.MainViewModelInterface {
 
         val term = binding.termInputField.text.toString()
 
+        //term can't be null here, so just check if it is blank
         if(!term.isBlank()) {
             startActivity(
                 RelatedPagesActivity.newIntent(binding.termInputField.text.toString(), this))

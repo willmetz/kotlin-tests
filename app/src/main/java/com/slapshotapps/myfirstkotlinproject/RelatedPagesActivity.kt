@@ -5,7 +5,6 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.view.MenuItem
@@ -13,13 +12,12 @@ import com.slapshotapps.myfirstkotlinproject.adapters.RelatedPagesAdapter
 import com.slapshotapps.myfirstkotlinproject.databinding.ActivityRelatedPagesBinding
 import com.slapshotapps.myfirstkotlinproject.viewmodels.RelatedPagesItem
 import com.slapshotapps.myfirstkotlinproject.viewmodels.RelatedPagesViewModel
-import com.slapshotapps.network.WikiApiService
 import com.slapshotapps.network.WikiRestApiService
-
-import kotlinx.android.synthetic.main.activity_related_pages.*
 
 class RelatedPagesActivity : AppCompatActivity(), RelatedPagesViewModel.RelatedPagesListener {
 
+    //use lateinit here as their isn't a constructor to access, and we can't initialize them
+    //until the layout is created
     lateinit var viewModel : RelatedPagesViewModel
     lateinit var binding : ActivityRelatedPagesBinding
 
@@ -72,6 +70,7 @@ class RelatedPagesActivity : AppCompatActivity(), RelatedPagesViewModel.RelatedP
         return true
     }
 
+    //essentially a static accessor function
     companion object {
         private val INTENT_TERM = "searchTerm"
 
