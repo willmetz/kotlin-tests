@@ -42,6 +42,7 @@ class RelatedPagesViewModelTest {
 
         val countDownLatch = CountDownLatch(1)
 
+        //interesting here as "when" is a kotlin keyword so it needs to be escaped with the backticks
         Mockito.`when`(mockService.relatedPages(anyString())).thenReturn(
             Observable.just(
                 getData()
