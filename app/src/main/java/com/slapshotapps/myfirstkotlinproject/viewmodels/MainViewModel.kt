@@ -19,8 +19,10 @@ class MainViewModel(wikiApiService: WikiApiService) {
     private var listener: MainViewModelInterface? = null
     private val service = wikiApiService
 
-    //java in kotlin works amazingly well
-    private val messageGenerator = HalloweenMessageGenerator()
+    //java in kotlin works amazingly well use the lazy delegate
+    private val messageGenerator : HalloweenMessageGenerator by lazy {
+        HalloweenMessageGenerator()
+    }
 
     fun setListener(listener: MainViewModelInterface) {
         this.listener = listener
