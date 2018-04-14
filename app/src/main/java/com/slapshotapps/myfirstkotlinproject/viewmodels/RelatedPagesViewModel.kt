@@ -29,20 +29,16 @@ class RelatedPagesViewModel(wikiApiService: WikiRestApiService) {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ relatedPages ->
-                run {
 
-                    val relatedPagesItems = ArrayList<RelatedPagesItem>()
+                val relatedPagesItems = ArrayList<RelatedPagesItem>()
 
-                    for (model: Page in relatedPages.pages) {
-                        relatedPagesItems.add(RelatedPagesItem(model))
-                    }
-
-                    listener.onDataLoaded(relatedPagesItems)
+                for (model: Page in relatedPages.pages) {
+                    relatedPagesItems.add(RelatedPagesItem(model))
                 }
-            }, { throwable ->
-                run {
-                    listener.onError()
-                }
+
+                listener.onDataLoaded(relatedPagesItems)
+            }, {
+                listener.onError()
             })
     }
 

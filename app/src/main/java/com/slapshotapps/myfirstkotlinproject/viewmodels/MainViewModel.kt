@@ -20,7 +20,7 @@ class MainViewModel(wikiApiService: WikiApiService) {
     private val service = wikiApiService
 
     //java in kotlin works amazingly well use the lazy delegate
-    private val messageGenerator : HalloweenMessageGenerator by lazy {
+    private val messageGenerator: HalloweenMessageGenerator by lazy {
         HalloweenMessageGenerator()
     }
 
@@ -41,7 +41,7 @@ class MainViewModel(wikiApiService: WikiApiService) {
         disposable?.dispose()
     }
 
-    fun onGetHalloweenPhrase(){
+    fun onGetHalloweenPhrase() {
 
         //calling java from kotlin...pretty simple
         listener?.showHalloweenMsg(messageGenerator.message);
@@ -53,17 +53,12 @@ class MainViewModel(wikiApiService: WikiApiService) {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ result ->
-                run {
-                    val msg = String.format(Locale.US, "%s was found %d times",
-                        term, result.query.searchinfo.totalhits)
-                    listener?.showMessage(msg);
-                }
-            },
-                { error ->
-                    run {
-                        listener?.showMessage(error?.message);
-                    }
-                });
+                val msg = String.format(Locale.US, "%s was found %d times",
+                    term, result.query.searchinfo.totalhits)
+                listener?.showMessage(msg);
+            }, { error ->
+                listener?.showMessage(error?.message);
+            });
     }
 
 
