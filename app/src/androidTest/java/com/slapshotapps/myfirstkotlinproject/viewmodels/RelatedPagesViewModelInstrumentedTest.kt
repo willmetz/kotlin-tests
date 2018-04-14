@@ -1,17 +1,11 @@
 package com.slapshotapps.myfirstkotlinproject.viewmodels
 
-import android.support.test.runner.AndroidJUnit4
 import com.slapshotapps.network.WikiRestApiService
 import com.slapshotapps.network.response.Page
 import com.slapshotapps.network.response.RelatedPagesModel
 import io.reactivex.Observable
-import io.reactivex.android.plugins.RxAndroidPlugins
-import io.reactivex.plugins.RxJavaPlugins
-import io.reactivex.schedulers.Schedulers
-import org.junit.Test
-
-import org.junit.Assert.*
 import org.junit.Before
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.mockito.ArgumentMatchers
 import org.mockito.Mockito
@@ -49,7 +43,7 @@ class RelatedPagesViewModelInstrumentedTest {
             )
         )
 
-        viewModel.onViewAttached( object : RelatedPagesViewModel.RelatedPagesListener{
+        viewModel.onViewAttached(object : RelatedPagesViewModel.RelatedPagesListener {
             override fun onDataLoaded(items: List<RelatedPagesItem>) {
 
                 kotlin.test.assertEquals(2, items.size)
@@ -69,7 +63,7 @@ class RelatedPagesViewModelInstrumentedTest {
         kotlin.test.assertEquals(true, countDownLatch.await(2, TimeUnit.SECONDS))
     }
 
-    fun getData(): RelatedPagesModel {
+    private fun getData(): RelatedPagesModel {
 
         val page1 = Page("test", "this is a test", null)
         val page2 = Page("test2", "still testing stuff", null)

@@ -32,13 +32,12 @@ class RelatedPagesActivity : AppCompatActivity(), RelatedPagesViewModel.RelatedP
         menu.findItem(R.id.action_home)?.setEnabled(true);
         menu.findItem(R.id.action_headlines)?.setEnabled(false);
 
-        binding.bottomNav.setOnNavigationItemSelectedListener(
-            object : BottomNavigationView.OnNavigationItemSelectedListener {
-                override fun onNavigationItemSelected(item: MenuItem) = when (item.itemId){
-                    R.id.action_home -> navigateHome()
-                    else -> false
-                }
-            })
+        binding.bottomNav.setOnNavigationItemSelectedListener { item ->
+            when (item.itemId){
+                R.id.action_home -> navigateHome()
+                else -> false
+            }
+        }
     }
 
 

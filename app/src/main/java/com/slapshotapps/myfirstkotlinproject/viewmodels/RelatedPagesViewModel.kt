@@ -1,9 +1,7 @@
 package com.slapshotapps.myfirstkotlinproject.viewmodels
 
-import com.slapshotapps.network.WikiApiService
 import com.slapshotapps.network.WikiRestApiService
 import com.slapshotapps.network.response.Page
-import com.slapshotapps.network.response.RelatedPagesModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import java.util.*
@@ -11,7 +9,7 @@ import java.util.*
 
 class RelatedPagesViewModel(wikiApiService: WikiRestApiService) {
 
-    public interface RelatedPagesListener {
+    interface RelatedPagesListener {
         fun onDataLoaded(items: List<RelatedPagesItem>)
         fun onError()
     }
@@ -48,7 +46,7 @@ class RelatedPagesViewModel(wikiApiService: WikiRestApiService) {
             })
     }
 
-    public fun onViewDetached() {
+    fun onViewDetached() {
         listener = null
     }
 }
